@@ -1,0 +1,10 @@
+model,grid,patch,minYplus,avgYplus,maxYplus,status
+RNGkEpsilon,grid_07,floor,53.24243,163.4931,252.4837,good
+RNGkEpsilon,grid_07,ceiling,55.89427,180.2174,292.784,good
+RNGkEpsilon,grid_07,walls,45.5009,117.1661,223.2947,good
+RNGkEpsilon,grid_10,floor,48.15705,122.3426,198.4283,good
+RNGkEpsilon,grid_10,ceiling,52.433,160.3865,237.5744,good
+RNGkEpsilon,grid_10,walls,45.3707,100.0836,194.4374,good
+RNGkEpsilon,grid_14,floor,32.12985,91.77444,160.0916,good
+RNGkEpsilon,grid_14,ceiling,27.42146,116.0299,183.3349,local below 30; area fraction check required
+RNGkEpsilon,grid_14,walls,27.42146,89.91967,266.7922,local below 30; area fraction check required

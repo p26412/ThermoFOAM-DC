@@ -1,0 +1,43 @@
+# OpenFOAM generated time directories
+[1-9]/
+[0-9][0-9]/
+[0-9][0-9][0-9]/
+[0-9][0-9][0-9][0-9]/
+[0-9][0-9][0-9][0-9][0-9]/
+[0-9].[0-9]*/
+
+# Parallel runs
+processor*/
+processors*/
+
+# OpenFOAM generated build/runtime files
+dynamicCode/
+platforms/
+lnInclude/
+*.dep
+*.o
+*.so
+
+# Logs: keep only curated logs under results/logs if needed
+log.*
+*.log
+
+# Visualization/export output
+VTK/
+*.vtk
+*.vtp
+*.vtu
+*.foam
+*.pvd
+*.pvsm
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS/editor junk
+.DS_Store
+*~
+*.swp

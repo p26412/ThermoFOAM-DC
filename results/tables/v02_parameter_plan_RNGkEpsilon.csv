@@ -1,0 +1,9 @@
+caseID,caseName,supplyVelocity_mps,supplyTemperature_K,totalRackHeat_kW,rackPowerPattern,purpose
+C00,baseline,0.75,291,18,all racks 3 kW,Reference case
+C01,lowSupplyVelocity,0.5,291,18,all racks 3 kW,Reduced airflow / hotspot risk
+C02,highSupplyVelocity,1.0,291,18,all racks 3 kW,Increased airflow cooling / pressure penalty
+C03,warmerSupplyAir,0.75,295,18,all racks 3 kW,Warmer supply air strategy
+C04,highRackLoad,0.75,291,30,all racks 5 kW,High IT heat density
+C05,overloadedRack_L2,0.75,291,23,rack_L2 = 8 kW; others 3 kW,Local non-uniform rack hotspot
+C06,worstCase_lowFlow_highLoad,0.5,291,30,all racks 5 kW,Optional combined stress case
+C07,mitigation_highFlow_highLoad,1.0,291,30,all racks 5 kW,Optional mitigation case

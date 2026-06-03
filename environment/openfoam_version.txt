@@ -1,0 +1,15 @@
+
+OpenFOAM target version
+=======================
+
+Developed for OpenFOAM Foundation v13 / openfoam-dev style workflows.
+The user test runs used OpenFOAM-dev builds including:
+- dev-914170c33bc8
+- dev-75c35e4b6a2c
+
+Main solver workflow:
+- foamRun -solver fluid
+
+Main post-processing tools:
+- dcMetricsPlus
+- foamPostProcess -solver fluid -func yPlus -latestTime

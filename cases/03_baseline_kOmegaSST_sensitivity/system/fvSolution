@@ -1,0 +1,143 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \    /   O peration     | ThermoFOAM-DC v0.1 publication-track setup      |
+|   \  /    A nd           | OpenFOAM Foundation v13 / openfoam-dev style    |
+|    \/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+
+solvers
+{
+    "rho.*"
+    {
+        solver          diagonal;
+    }
+
+    p_rgh
+    {
+        solver          PCG;
+        preconditioner
+        {
+            preconditioner  GAMG;
+            smoother        GaussSeidel;
+        }
+        tolerance       1e-8;
+        relTol          0.01;
+    }
+
+    p_rghFinal
+    {
+        $p_rgh;
+        relTol          0;
+    }
+
+    fieldSolver
+    {
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-8;
+        relTol          0.1;
+    }
+
+    U
+    {
+        $fieldSolver;
+    }
+
+    UFinal
+    {
+        $U;
+        relTol          0;
+    }
+
+    e
+    {
+        $fieldSolver;
+    }
+
+    eFinal
+    {
+        $e;
+        relTol          0;
+    }
+
+    h
+    {
+        $fieldSolver;
+    }
+
+    hFinal
+    {
+        $h;
+        relTol          0;
+    }
+
+    k
+    {
+        $fieldSolver;
+    }
+
+    kFinal
+    {
+        $k;
+        relTol          0;
+    }
+
+    omega
+    {
+        $fieldSolver;
+    }
+
+    omegaFinal
+    {
+        $omega;
+        relTol          0;
+    }
+}
+
+PIMPLE
+{
+    momentumPredictor        no;
+    nOuterCorrectors         1;
+    nCorrectors              2;
+    nNonOrthogonalCorrectors 1;
+    pRefValue                0;
+    pRefCell                 0;
+
+    // Optional residualControl for OpenFOAM-dev must be single scalar values.
+    // Activate only after checking actual solved field names in log.foamRun.
+    // residualControl
+    // {
+    //     p_rgh     1e-4;
+    //     U         1e-4;
+    //     T         1e-6;
+    //     k         1e-5;
+    //     omega   1e-5;
+    // }
+}
+
+relaxationFactors
+{
+    fields
+    {
+        p       0.3;
+        rho     0.01;
+    }
+
+    equations
+    {
+        U       0.7;
+        "(T|e|h|k|omega).*" 0.7;
+    }
+}
+
+// ************************************************************************* //

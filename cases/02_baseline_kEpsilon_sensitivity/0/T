@@ -1,0 +1,57 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | ThermoFOAM-DC v0.1 baseline case                |
+|   \\  /    A nd           | OpenFOAM Foundation v13 / openfoam-dev style    |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      T;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+dimensions      [0 0 0 1 0 0 0];
+
+internalField   uniform 300;
+
+boundaryField
+{
+    supplyTiles
+    {
+        // 291 K = 18 degC cold supply air.
+        type            fixedValue;
+        value           uniform 291;
+    }
+
+    returnOutlet
+    {
+        // Outflow uses zeroGradient; reverse flow is assigned room temperature.
+        type            inletOutlet;
+        inletValue      uniform 300;
+        value           uniform 300;
+    }
+
+    floor
+    {
+        // Adiabatic floor except where supply tiles inject cold air.
+        type            zeroGradient;
+    }
+
+    ceiling
+    {
+        type            zeroGradient;
+    }
+
+    walls
+    {
+        type            zeroGradient;
+    }
+}
+
+// ************************************************************************* //

@@ -1,0 +1,22 @@
+
+cff-version: 1.2.0
+title: "ThermoFOAM-DC v0.1: RNG k-epsilon OpenFOAM Data-Center Cooling CFD Workflow"
+message: "If you use this repository, please cite it using this metadata."
+type: software
+authors:
+  - family-names: "Kumar"
+    given-names: "Pankaj"
+version: "0.1.0"
+date-released: "2026-06-03"
+license: "GPL-3.0-or-later"
+repository-code: "https://github.com/p26412/ThermoFOAM-DC"
+keywords:
+  - OpenFOAM
+  - CFD
+  - data-center cooling
+  - HVAC
+  - thermal management
+  - grid independence
+  - yPlus
+  - RNG k-epsilon
+  - wall functions

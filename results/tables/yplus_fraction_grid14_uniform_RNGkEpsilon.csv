@@ -1,0 +1,5 @@
+model,grid,patch,faces,facesBelow30,percentBelow30,minYplus,avgYplus,maxYplus
+RNGkEpsilon,grid_14,floor,6526,0,0.0,32.1298,91.7744,160.0916
+RNGkEpsilon,grid_14,ceiling,6209,2,0.0322,27.4215,116.0299,183.3349
+RNGkEpsilon,grid_14,walls,14028,6,0.0428,27.4215,89.9197,266.7922
+RNGkEpsilon,grid_14,TOTAL,26763,8,0.0299,,,

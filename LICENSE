@@ -1,0 +1,13 @@
+
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+
+Copyright (C) 2026 Pankaj Kumar
+
+This project is released under the GNU General Public License v3.0 or later.
+
+This repository contains OpenFOAM case files and OpenFOAM-linked utility code.
+OpenFOAM is distributed under the GNU General Public License, so GPL-3.0-or-later
+is used here for compatibility.
+
+Full license text: https://www.gnu.org/licenses/gpl-3.0.txt

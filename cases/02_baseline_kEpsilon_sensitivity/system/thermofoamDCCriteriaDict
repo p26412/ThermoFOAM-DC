@@ -1,0 +1,133 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \    /   O peration     | ThermoFOAM-DC v0.1 publication-track setup      |
+|   \  /    A nd           | OpenFOAM Foundation v13 / openfoam-dev style    |
+|    \/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      thermofoamDCCriteriaDict;
+}
+
+// This dictionary documents the engineering criteria used in v0.1.
+// foamRun does not read this file directly. dcMetricsPlus and the Python scripts
+// create the numbers used to check these criteria.
+
+steadyConvergenceCriteria
+{
+    compareLateCheckpoints      (5000 8000);
+
+    acceptableChange
+    {
+        TavgRackInlet              0.5;      // K
+        T95RackInlet               1.0;      // K
+        TavgRoom                   0.5;      // K
+        returnOutletTmassFlowAvg   1.0;      // K
+        TmaxRackInlet              2.0;      // K
+        TmaxRoom                   2.0;      // K
+        roomHotspotVolumeFraction  0.03;     // absolute fraction
+        rackInletHotspotFraction   0.03;     // absolute fraction
+        deltaPRelative             0.05;     // 5 percent
+    }
+}
+
+gridIndependenceCriteria
+{
+    meshParameter       hEff;
+    requiredMeshes      (grid_07 grid_10 grid_14);
+    optionalFineMesh    grid_18;
+
+    primaryQuantities
+    (
+        TavgRackInlet
+        T95RackInlet
+        TavgRoom
+        returnOutletTmassFlowAvg
+        roomHotspotVolumeFraction
+        deltaP_supply_minus_return
+    );
+
+    secondaryQuantities
+    (
+        TmaxRackInlet
+        TmaxRoom
+        returnOutletTareaAvg
+    );
+
+    acceptableFineMediumDifference
+    {
+        TavgRackInlet              0.5;      // K or <1 percent
+        T95RackInlet               1.0;      // K
+        TavgRoom                   0.5;      // K or <1 percent
+        returnOutletTmassFlowAvg   1.0;      // K or <1 percent
+        roomHotspotVolumeFraction  0.03;     // absolute or <5 percent relative
+        rackInletHotspotFraction   0.03;     // absolute
+        deltaPRelative             0.05;     // 5 percent
+        TmaxRackInletRelative      0.02;     // 2 percent
+        TmaxRoomRelative           0.02;     // 2 percent
+    }
+}
+
+turbulenceModelStudy
+{
+    primaryModel        kEpsilon;
+    sensitivityModels   (kOmegaSST RNGkEpsilon);
+
+    note
+    "Use RNGkEpsilon for the primary publication-track study. Use kEpsilon and kOmegaSST as model-form sensitivity checks on the selected mesh.";
+}
+
+parameterStudyCases
+{
+    baseline
+    {
+        supplyVelocity       (0 0 0.75);
+        supplyTemperature    291;
+        rackPower            3000;
+    }
+
+    lowSupplyVelocity
+    {
+        supplyVelocity       (0 0 0.50);
+        supplyTemperature    291;
+        rackPower            3000;
+    }
+
+    highSupplyVelocity
+    {
+        supplyVelocity       (0 0 1.00);
+        supplyTemperature    291;
+        rackPower            3000;
+    }
+
+    highRackLoad
+    {
+        supplyVelocity       (0 0 0.75);
+        supplyTemperature    291;
+        rackPower            5000;
+    }
+
+    hotspotRack
+    {
+        supplyVelocity       (0 0 0.75);
+        supplyTemperature    291;
+
+        rackPowers
+        {
+            rack_L1          3000;
+            rack_L2          8000;
+            rack_L3          3000;
+            rack_R1          3000;
+            rack_R2          3000;
+            rack_R3          3000;
+        }
+    }
+}
+
+// ************************************************************************* //

@@ -1,0 +1,60 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | ThermoFOAM-DC v0.1 baseline case                |
+|   \\  /    A nd           | OpenFOAM Foundation v13 / openfoam-dev style    |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      omega;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+dimensions      [0 0 -1 0 0 0 0];
+
+internalField   uniform 1;
+
+boundaryField
+{
+    supplyTiles
+    {
+        type            fixedValue;
+        value           uniform 1;
+    }
+
+    returnOutlet
+    {
+        type            inletOutlet;
+        inletValue      uniform 1;
+        value           uniform 1;
+    }
+
+    floor
+    {
+        type            omegaWallFunction;
+        value           uniform 1;
+        blended         true;
+    }
+
+    ceiling
+    {
+        type            omegaWallFunction;
+        value           uniform 1;
+        blended         true;
+    }
+
+    walls
+    {
+        type            omegaWallFunction;
+        value           uniform 1;
+        blended         true;
+    }
+}
+
+// ************************************************************************* //
