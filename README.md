@@ -4,8 +4,7 @@
 
 ThermoFOAM-DC is a reproducible OpenFOAM workflow for studying simplified air-cooled data-center thermal management. Version 0.1 models a rectangular data-center room with rack heat-source zones, floor supply tiles, a return outlet, buoyancy-driven thermal transport, and RANS turbulence modelling.
 
-This corrected v0.1 release uses **RNG k-epsilon as the primary turbulence model**. Standard k-epsilon and k-omega SST are retained as sensitivity setups, because turbulence models are not magical stickers one slaps onto a case and hopes peer review applauds.
-
+This v0.1 release adopts RNG k-epsilon as the primary turbulence model, selected from the grid-sensitivity and y+ verification study. Standard k-epsilon and k-omega SST setups are retained as sensitivity cases to compare the effect of turbulence-model choice on the cooling predictions.
 ---
 
 ## v0.1 scope
