@@ -1,0 +1,55 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | ThermoFOAM-DC v0.1 baseline case                |
+|   \\  /    A nd           | OpenFOAM Foundation v13 / openfoam-dev style    |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    location    "0";
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    supplyTiles
+    {
+        // Cold supply air from raised-floor tiles, upward in +z.
+        type            fixedValue;
+        value           uniform (0 0 0.50);
+    }
+
+    returnOutlet
+    {
+        // Velocity adjusts to pressure field; allows possible reverse flow safely.
+        type            pressureInletOutletVelocity;
+        value           uniform (0 0 0);
+    }
+
+    floor
+    {
+        type            noSlip;
+    }
+
+    ceiling
+    {
+        type            noSlip;
+    }
+
+    walls
+    {
+        type            noSlip;
+    }
+}
+
+// ************************************************************************* //

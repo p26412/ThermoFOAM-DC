@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$ROOT"
+
+clean_case_generated() {
+    local case_dir="$1"
+    find "$case_dir" -mindepth 1 -maxdepth 1 -type d \
+        \( -regex '.*/[1-9][0-9]*\(\.[0-9]*\)?' -o -name 'processor*' -o -name 'processors*' -o -name 'postProcessing' -o -name 'VTK' -o -name 'dynamicCode' -o -name 'platforms' \) \
+        -exec rm -rf {} +
+    find "$case_dir" -mindepth 1 -maxdepth 1 -type f \
+        \( -name 'log.*' -o -name '*.log' -o -name '*.foam' -o -name '*.vtk' -o -name '*.vtu' -o -name '*.vtp' \) \
+        -delete
+}
+
+for case_dir in cases/01_baseline_RNGkEpsilon cases/02_baseline_kEpsilon_sensitivity cases/03_baseline_kOmegaSST_sensitivity cases/parameterstudy/C*; do
+    if [[ -d "$case_dir" ]]; then
+        echo "Cleaning generated OpenFOAM outputs from $case_dir"
+        clean_case_generated "$case_dir"
+    fi
+done
+
+if [[ "${1:-}" == "--results" ]]; then
+    echo "Removing generated curated result tables/plots"
+    rm -rf results/tables/* results/plots/publication/* results/plots/cfd_figures/* results/plots/cfd_velocity/* results/plots/cfd_velocity_with_isolines/*
+fi

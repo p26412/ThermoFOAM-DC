@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # OpenFOAM generated time directories
 [1-9]/
 [0-9][0-9]/
@@ -41,3 +42,35 @@ venv/
 .DS_Store
 *~
 *.swp
+=======
+# OpenFOAM generated time directories, except initial 0/
+**/[1-9]/
+**/[1-9][0-9]/
+**/[1-9][0-9][0-9]/
+**/[1-9][0-9][0-9][0-9]/
+**/[1-9][0-9][0-9][0-9][0-9]/
+
+# OpenFOAM generated outputs
+**/processor*/
+**/processors*/
+**/dynamicCode/
+**/postProcessing/
+**/VTK/
+**/*.foam
+**/*.vtk
+**/*.vtu
+**/*.vtp
+
+# Logs
+**/log.*
+**/*.log
+
+# Python/cache
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# OpenFOAM build files
+platforms/
+Make/linux*
+>>>>>>> aeb3467 (Release ThermoFOAM-DC v0.2 ten-case parameter-study workflow)

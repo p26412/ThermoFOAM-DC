@@ -1,0 +1,55 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \    /   O peration     | ThermoFOAM-DC v0.1 publication-track setup      |
+|   \  /    A nd           | OpenFOAM Foundation v13 / openfoam-dev style    |
+|    \/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      dcMetricsDict;
+}
+
+temperatureField            T;
+pressureField               p_rgh;
+velocityField               U;
+
+supplyPatch                 supplyTiles;
+returnPatch                 returnOutlet;
+
+// Publication-track recommendation:
+// - rackInletRiskThreshold monitors server inlet risk.
+// - roomHotspotThreshold avoids labelling most of the warm hot aisle as a hotspot.
+rackInletRiskThreshold      305;
+roomHotspotThreshold        315;
+
+// Monitor boxes just outside rack fronts, inside the cold aisle.
+// They avoid entering the rack heat-source zones.
+rackInletBoxMin
+(
+    (1.0 2.0 0.0)
+    (3.1 2.0 0.0)
+    (5.2 2.0 0.0)
+
+    (1.0 2.8 0.0)
+    (3.1 2.8 0.0)
+    (5.2 2.8 0.0)
+);
+
+rackInletBoxMax
+(
+    (1.8 2.2 2.2)
+    (3.9 2.2 2.2)
+    (6.0 2.2 2.2)
+
+    (1.8 3.0 2.2)
+    (3.9 3.0 2.2)
+    (6.0 3.0 2.2)
+);
+
+// ************************************************************************* //

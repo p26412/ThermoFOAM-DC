@@ -1,0 +1,11 @@
+caseID,caseName,folder,Usupply,Tsupply,totalRackPowerW,expectedSupplyFlow,totalVolume,description
+C00,baseline,C00_baseline,0.75,291,18000,1.08,105,Reference case: six racks at 3 kW each
+C01,lowSupplyVelocity,C01_lowSupplyVelocity,0.50,291,18000,0.72,105,Lower supply velocity with baseline heat load
+C02,highSupplyVelocity,C02_highSupplyVelocity,1.00,291,18000,1.44,105,Higher supply velocity with baseline heat load
+C03,warmerSupplyAir,C03_warmerSupplyAir,0.75,295,18000,1.08,105,Warmer supply air temperature with baseline heat load
+C04,highRackLoad,C04_highRackLoad,0.75,291,30000,1.08,105,All racks increased to 5 kW each
+C05,overloadedRack_L2,C05_overloadedRack_L2,0.75,291,23000,1.08,105,Rack L2 overloaded to 8 kW; others 3 kW
+C06,worstCase_lowFlow_highLoad,C06_worstCase_lowFlow_highLoad,0.50,291,30000,0.72,105,Low flow with all racks at 5 kW
+C07,mitigation_highFlow_highLoad,C07_mitigation_highFlow_highLoad,1.00,291,30000,1.44,105,High flow mitigation for all racks at 5 kW
+C08,overloadedRack_L2_lowFlow,C08_overloadedRack_L2_lowFlow,0.50,291,23000,0.72,105,Overloaded L2 with low supply velocity
+C09,overloadedRack_L2_highFlow,C09_overloadedRack_L2_highFlow,1.00,291,23000,1.44,105,Overloaded L2 with high supply velocity

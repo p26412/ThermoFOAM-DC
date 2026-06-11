@@ -51,7 +51,10 @@ For every case, report:
 - `deltaP` by case
 - trade-off plot: rack risk vs deltaP
 - contour image for overloaded rack case
+<<<<<<< HEAD
 
 ## Recommended release strategy
 
 Release v0.1 first. Then use v0.2 as a clean follow-up release focused on design parameters and trade-offs.
+=======
+>>>>>>> aeb3467 (Release ThermoFOAM-DC v0.2 ten-case parameter-study workflow)

@@ -1,0 +1,2 @@
+gridID,nCells,hEff,turbulenceModel,TavgRackInlet,T95RackInlet,TmaxRackInlet,TavgRoom,T95Room,TmaxRoom,rackInletHotspotFraction,roomHotspotVolumeFraction,deltaP_supply_minus_return,yplus_min,yplus_avg_floor,yplus_avg_ceiling,yplus_avg_walls,decision
+# Fill this table from v0.1 selected RNG k-epsilon mesh-independence data before publication.,,,,,,,,,,,,,,,,,

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Generate v0.2 tables and publication SVG plots from completed simulations.
+# Usage:
+#   ./Allpostprocess_v02 cases/parameterstudy 4000
+
+CASES_ROOT="${1:-cases/parameterstudy}"
+LATE_START="${2:-4000}"
+
+bash scripts/run_v02_analysis.sh --cases-root "$CASES_ROOT" --late-start "$LATE_START"
+bash scripts/cfd_viz/make_foam_files.sh "$CASES_ROOT"
+
+echo "Main tables:  results/tables"
+echo "Main plots:   results/plots/publication"
+echo "For ParaView CFD figures, run:"
+echo "  export PVPYTHON_BIN=pvpython"
+echo "  bash scripts/cfd_viz/run_pv_figures_all_cases.sh $CASES_ROOT 8000"
+echo "  PV_NUM_CONTOUR_LINES=18 bash scripts/cfd_viz/run_velocity_figures_all_cases.sh $CASES_ROOT 8000 results/plots/cfd_velocity_with_isolines"

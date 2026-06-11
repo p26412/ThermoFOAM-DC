@@ -1,0 +1,5 @@
+patch,faces,below_yplus_30,percent_below_30,yplus_min,yplus_avg,yplus_max,decision
+floor,6526,0,0.0000,32.1298,91.7744,160.0916,acceptable_wall_function
+ceiling,6209,2,0.0322,27.4215,116.0299,183.3349,acceptable_wall_function
+walls,14028,6,0.0428,27.4215,89.9197,266.7922,acceptable_wall_function
+TOTAL,26763,8,0.0299,,,,acceptable_wall_function

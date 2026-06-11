@@ -1,0 +1,70 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | ThermoFOAM-DC v0.1 baseline case                |
+|   \\  /    A nd           | OpenFOAM Foundation v13 / openfoam-dev style    |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      fvModels;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+// Six rack heat-source regions. CellZones are created by system/topoSetDict.
+// Power per rack: 3000 W. Total IT heat load: 18000 W.
+
+rack_L1_heat
+{
+    type            heatSource;
+    selectionMode   cellZone;
+    cellZone        rack_L1;
+    Q               3000;
+}
+
+rack_L2_heat
+{
+    type            heatSource;
+    selectionMode   cellZone;
+    cellZone        rack_L2;
+    Q               8000;
+}
+
+rack_L3_heat
+{
+    type            heatSource;
+    selectionMode   cellZone;
+    cellZone        rack_L3;
+    Q               3000;
+}
+
+rack_R1_heat
+{
+    type            heatSource;
+    selectionMode   cellZone;
+    cellZone        rack_R1;
+    Q               3000;
+}
+
+rack_R2_heat
+{
+    type            heatSource;
+    selectionMode   cellZone;
+    cellZone        rack_R2;
+    Q               3000;
+}
+
+rack_R3_heat
+{
+    type            heatSource;
+    selectionMode   cellZone;
+    cellZone        rack_R3;
+    Q               3000;
+}
+
+// ************************************************************************* //

@@ -1,0 +1,60 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | ThermoFOAM-DC v0.1 baseline case                |
+|   \\  /    A nd           | OpenFOAM Foundation v13 / openfoam-dev style    |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      physicalProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+// Boussinesq air model adapted from the OpenFOAM Foundation v13 roomHeating
+// tutorial. Suitable for small temperature differences around 300 K.
+
+thermoType
+{
+    type            heRhoThermo;
+    mixture         pureMixture;
+    transport       const;
+    thermo          eConst;
+    equationOfState Boussinesq;
+    specie          specie;
+    energy          sensibleInternalEnergy;
+}
+
+mixture
+{
+    specie
+    {
+        molWeight   28.9;
+    }
+
+    equationOfState
+    {
+        rho0        1.2;
+        T0          300;
+        beta        3e-03;
+    }
+
+    thermodynamics
+    {
+        Cv          717;
+        Hf          0;
+    }
+
+    transport
+    {
+        mu          1.8e-05;
+        Pr          0.7;
+    }
+}
+
+// ************************************************************************* //

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT=$(cd "$(dirname "$0")" && pwd)
+rm -rf "$ROOT/results/plots/publication" \
+       "$ROOT/results/plots/cfd_velocity_with_isolines" \
+       "$ROOT/results/plots/cfd_velocity" \
+       "$ROOT/results/plots/cfd_figures" \
+       "$ROOT/results/tables/v02_"*.csv \
+       "$ROOT/docs/v02_main_findings.md" \
+       "$ROOT/docs/v02_flow_balance_table.md" \
+       "$ROOT/docs/v02_heat_balance_diagnostic_table.md"
+mkdir -p "$ROOT/results/plots/publication" "$ROOT/results/tables"
+echo "[ThermoFOAM-DC] cleaned v0.2 generated outputs."

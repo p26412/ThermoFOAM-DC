@@ -1,22 +1,43 @@
+<<<<<<< HEAD
 
 cff-version: 1.2.0
 title: "ThermoFOAM-DC v0.1: RNG k-epsilon OpenFOAM Data-Center Cooling CFD Workflow"
+=======
+cff-version: 1.2.0
+title: "ThermoFOAM-DC v0.2: OpenFOAM Data-Center Cooling Parameter Study and Hotspot Analysis Workflow"
+>>>>>>> aeb3467 (Release ThermoFOAM-DC v0.2 ten-case parameter-study workflow)
 message: "If you use this repository, please cite it using this metadata."
 type: software
 authors:
   - family-names: "Kumar"
     given-names: "Pankaj"
+<<<<<<< HEAD
 version: "0.1.0"
 date-released: "2026-06-03"
+=======
+version: "0.2.0"
+date-released: "2026-06-05"
+>>>>>>> aeb3467 (Release ThermoFOAM-DC v0.2 ten-case parameter-study workflow)
 license: "GPL-3.0-or-later"
 repository-code: "https://github.com/p26412/ThermoFOAM-DC"
 keywords:
   - OpenFOAM
   - CFD
   - data-center cooling
+<<<<<<< HEAD
   - HVAC
   - thermal management
   - grid independence
   - yPlus
   - RNG k-epsilon
   - wall functions
+=======
+  - electronics cooling
+  - thermal management
+  - HVAC
+  - hotspot analysis
+  - parametric study
+  - RNG k-epsilon
+  - wall functions
+  - ParaView
+>>>>>>> aeb3467 (Release ThermoFOAM-DC v0.2 ten-case parameter-study workflow)

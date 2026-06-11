@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+cat <<'TXT'
+Usage: ./Allrun <command>
+
+Commands:
+  baseline          Run the RNG k-epsilon baseline case
+  parameter-study   Run all v0.2 parameter-study cases serially
+  metrics           Run dcMetricsPlus over times 0:8000 for all parameter-study cases
+  analysis          Generate global v0.2 tables and publication SVG plots, late-start 4000
+  per-rack          Collect per-rack metrics and regenerate v0.2 plots
+  foam-files        Create ParaView .foam files for all parameter-study cases
+  derived-fields    Generate optional OpenFOAM derived fields at time 8000
+  pv-figures        Generate ParaView CFD figures at time 8000
+  velocity-figures  Generate velocity/scalar contours with contour lines and line profiles at time 8000
+  postprocess       Run analysis, per-rack collection, foam files, and velocity figures
+TXT
+}
+
+cmd="${1:-}"
+if [[ -z "$cmd" || "$cmd" == "-h" || "$cmd" == "--help" ]]; then
+    usage
+    exit 0
+fi
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$ROOT"
+
+case "$cmd" in
+    baseline)
+        ( cd cases/01_baseline_RNGkEpsilon && ./Allclean && ./Allrun )
+        ;;
+    parameter-study)
+        cd cases/parameterstudy
+        for case in C*/; do
+            echo "Running $case"
+            ( cd "$case" && ./Allclean && ./Allrun )
+        done
+        ;;
+    metrics)
+        cd cases/parameterstudy
+        for case in C*/; do
+            echo "Running dcMetricsPlus for $case"
+            ( cd "$case" && dcMetricsPlus -time '0:8000' )
+        done
+        ;;
+    analysis)
+        bash scripts/run_v02_analysis.sh --cases-root cases/parameterstudy --late-start 4000
+        ;;
+    per-rack)
+        python3 scripts/collect_per_rack_summary.py --cases-root cases/parameterstudy --late-start 4000
+        bash scripts/run_v02_analysis.sh --cases-root cases/parameterstudy --late-start 4000
+        ;;
+    foam-files)
+        bash scripts/cfd_viz/make_foam_files.sh cases/parameterstudy
+        ;;
+    derived-fields)
+        bash scripts/cfd_viz/write_cfd_fields_all_cases.sh cases/parameterstudy 8000
+        ;;
+    pv-figures)
+        bash scripts/cfd_viz/run_pv_figures_all_cases.sh cases/parameterstudy 8000
+        ;;
+    velocity-figures)
+        PV_NUM_CONTOUR_LINES="${PV_NUM_CONTOUR_LINES:-18}" PV_CONTOUR_LINE_WIDTH="${PV_CONTOUR_LINE_WIDTH:-1.5}" \
+            bash scripts/cfd_viz/run_velocity_figures_all_cases.sh cases/parameterstudy 8000 results/plots/cfd_velocity_with_isolines
+        ;;
+    postprocess)
+        bash scripts/run_v02_analysis.sh --cases-root cases/parameterstudy --late-start 4000
+        python3 scripts/collect_per_rack_summary.py --cases-root cases/parameterstudy --late-start 4000 || true
+        bash scripts/run_v02_analysis.sh --cases-root cases/parameterstudy --late-start 4000
+        bash scripts/cfd_viz/make_foam_files.sh cases/parameterstudy
+        PV_NUM_CONTOUR_LINES="${PV_NUM_CONTOUR_LINES:-18}" PV_CONTOUR_LINE_WIDTH="${PV_CONTOUR_LINE_WIDTH:-1.5}" \
+            bash scripts/cfd_viz/run_velocity_figures_all_cases.sh cases/parameterstudy 8000 results/plots/cfd_velocity_with_isolines
+        ;;
+    *)
+        echo "Unknown command: $cmd" >&2
+        usage >&2
+        exit 1
+        ;;
+esac

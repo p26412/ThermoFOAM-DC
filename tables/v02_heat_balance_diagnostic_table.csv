@@ -1,0 +1,11 @@
+caseID,caseName,totalRackPowerW,estimatedHeatRemovedW_mean,estimatedHeatRemovedW_std,heatBalanceErrorPercent_mean,heatBalanceErrorPercent_std,note
+C00,baseline,18000,23421.198,2511.682,30.1177,13.9538,"Return-outlet heat-removal diagnostic only. For publication, integrate enthalpy over all open boundaries."
+C01,lowSupplyVelocity,18000,21505.688,1826.584,19.4760,10.1477,"Return-outlet heat-removal diagnostic only. For publication, integrate enthalpy over all open boundaries."
+C02,highSupplyVelocity,18000,24570.245,2992.233,36.5014,16.6235,"Return-outlet heat-removal diagnostic only. For publication, integrate enthalpy over all open boundaries."
+C03,warmerSupplyAir,18000,23396.814,1541.186,29.9823,8.562152,"Return-outlet heat-removal diagnostic only. For publication, integrate enthalpy over all open boundaries."
+C04,highRackLoad,30000,40785.841,2692.793,35.9528,8.975969,"Return-outlet heat-removal diagnostic only. For publication, integrate enthalpy over all open boundaries."
+C05,overloadedRack_L2,23000,30801.791,819.964,33.9208,3.565062,"Return-outlet heat-removal diagnostic only. For publication, integrate enthalpy over all open boundaries."
+C06,worstCase_lowFlow_highLoad,30000,39271.312,2859.773,30.9044,9.532596,"Return-outlet heat-removal diagnostic only. For publication, integrate enthalpy over all open boundaries."
+C07,mitigation_highFlow_highLoad,30000,42807.023,1398.388,42.6901,4.661311,"Return-outlet heat-removal diagnostic only. For publication, integrate enthalpy over all open boundaries."
+C08,overloadedRack_L2_lowFlow,23000,30222.074,517.927,31.4003,2.251869,"Return-outlet heat-removal diagnostic only. For publication, integrate enthalpy over all open boundaries."
+C09,overloadedRack_L2_highFlow,23000,25873.560,2504.695,12.4937,10.8900,"Return-outlet heat-removal diagnostic only. For publication, integrate enthalpy over all open boundaries."

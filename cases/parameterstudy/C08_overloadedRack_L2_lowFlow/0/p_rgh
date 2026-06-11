@@ -1,0 +1,57 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | ThermoFOAM-DC v0.1 baseline case                |
+|   \\  /    A nd           | OpenFOAM Foundation v13 / openfoam-dev style    |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      p_rgh;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+dimensions      [1 -1 -2 0 0 0 0];
+
+internalField   uniform 0;
+
+boundaryField
+{
+    supplyTiles
+    {
+        type            fixedFluxPressure;
+        value           uniform 0;
+    }
+
+    returnOutlet
+    {
+        // Gauge pressure reference for the pressure-reduced variable.
+        type            fixedValue;
+        value           uniform 0;
+    }
+
+    floor
+    {
+        type            fixedFluxPressure;
+        value           uniform 0;
+    }
+
+    ceiling
+    {
+        type            fixedFluxPressure;
+        value           uniform 0;
+    }
+
+    walls
+    {
+        type            fixedFluxPressure;
+        value           uniform 0;
+    }
+}
+
+// ************************************************************************* //

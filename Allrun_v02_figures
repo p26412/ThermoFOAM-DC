@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT=$(cd "$(dirname "$0")" && pwd)
+CASES_ROOT=${1:-"$ROOT/cases/parameterstudy"}
+TIME=${2:-8000}
+OUT_DIR=${3:-"$ROOT/results/plots/cfd_velocity_with_isolines"}
+PVPYTHON_BIN=${PVPYTHON_BIN:-pvpython}
+PV_NUM_CONTOUR_LINES=${PV_NUM_CONTOUR_LINES:-18}
+PV_CONTOUR_LINE_WIDTH=${PV_CONTOUR_LINE_WIDTH:-1.5}
+export PVPYTHON_BIN PV_NUM_CONTOUR_LINES PV_CONTOUR_LINE_WIDTH
+
+cd "$ROOT"
+
+echo "[ThermoFOAM-DC] creating .foam files..."
+bash scripts/cfd_viz/make_foam_files.sh "$CASES_ROOT"
+
+echo "[ThermoFOAM-DC] generating contour/profile figures with $PVPYTHON_BIN..."
+bash scripts/cfd_viz/run_velocity_figures_all_cases.sh "$CASES_ROOT" "$TIME" "$OUT_DIR"
+
+echo "[ThermoFOAM-DC] figure generation complete. Check $OUT_DIR."

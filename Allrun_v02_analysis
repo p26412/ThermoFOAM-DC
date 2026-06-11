@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT=$(cd "$(dirname "$0")" && pwd)
+CASES_ROOT=${1:-"$ROOT/cases/parameterstudy"}
+LATE_START=${2:-4000}
+
+cd "$ROOT"
+
+echo "[ThermoFOAM-DC] cases root: $CASES_ROOT"
+echo "[ThermoFOAM-DC] late-start time: $LATE_START"
+
+echo "[ThermoFOAM-DC] generating global/per-rack tables and SVG plots..."
+bash scripts/run_v02_analysis.sh --cases-root "$CASES_ROOT" --late-start "$LATE_START"
+
+echo "[ThermoFOAM-DC] analysis complete. Check results/tables and results/plots/publication."
